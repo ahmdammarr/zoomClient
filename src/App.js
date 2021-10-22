@@ -13,14 +13,15 @@ ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
 function App() {
-
+const [UserName, setUserName] = React.useState('')
+const [meetungNumber, setmeetungNumber] = React.useState()
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
-  var signatureEndpoint = ''
-  var apiKey = ''
+  var signatureEndpoint = 'http://localhost:5000'
+  var apiKey = 'tJayN6E_RZWtE9ZlYKD0ig'
   var meetingNumber = '123456789'
-  var role = 0
+  var role = 1
   var leaveUrl = 'http://localhost:3000'
-  var userName = 'React'
+  var userName = UserName
   var userEmail = ''
   var passWord = ''
   // pass in the registrant's token if your meeting or webinar requires registration. More info here:
@@ -35,7 +36,7 @@ function App() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        meetingNumber: meetingNumber,
+        meetingNumber: '86700496423',
         role: role
       })
     }).then(res => res.json())
@@ -53,14 +54,13 @@ function App() {
       leaveUrl: leaveUrl,
       success: (success) => {
         console.log(success)
-
         ZoomMtg.join({
           signature: signature,
-          meetingNumber: meetingNumber,
+          meetingNumber: '86700496423',
           userName: userName,
           apiKey: apiKey,
           userEmail: userEmail,
-          passWord: passWord,
+          passWord: '772795',
           tk: registrantToken,
           success: (success) => {
             console.log(success)
@@ -81,8 +81,8 @@ function App() {
     <div className="App">
       <main>
         <h1>Zoom Meeting SDK Sample React</h1>
-
-        <button onClick={getSignature}>Join Meeting</button>
+         <input placeholder="user name"  onChange={(e)=>setUserName(e.target.value)}/>
+       {(userName)&& <button onClick={getSignature}>Join Meeting</button>}
       </main>
     </div>
   );
