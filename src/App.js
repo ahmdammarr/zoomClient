@@ -18,7 +18,7 @@ const [meetingNumber, setmeetingNumber] = React.useState()
 const [meetingPassCode, setmeetingPassCode] = React.useState()
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
   var signatureEndpoint = 'https://test-signzoom-server.herokuapp.com/'
-  var apiKey = 'tJayN6E_RZWtE9ZlYKD0ig'
+  var apiKey = process.env.REACT_APP_APIKEY
   //var meetingNumber = '123456789'
   var role = 1
   var leaveUrl = 'http://localhost:3000'
